@@ -6,21 +6,21 @@ MAIN_STREAM_PRIORITY="true"
 
 # [gst|avconv|ffmpeg] defines which program will push your stream
 # use ffmpeg if not sure
-RUNNER="gst"
+RUNNER="ffmpeg"
 
 # nginx rtmp application name for main stream
-MAIN_STREAM_APPNAME="main"
+MAIN_STREAM_APPNAME="smain"
 
 # nginx rtmp application name for backup stream
-BACKUP_STREAM_APPNAME="backup"
+BACKUP_STREAM_APPNAME="sback"
 
 # nginx rtmp application name for final stream
-OUT_STREAM_APPNAME="out"
+OUT_STREAM_APPNAME="sout"
 
 # username for nginx worker processes
-NGINX_USER="nobody"
+NGINX_USER="www"
 # group for NGINX_USER
-NGINX_GROUP="nogroup"
+NGINX_GROUP="www"
 
 # Following parameters are technical. Please, DO NOT CHANGE them.
 # If changed anyway, run init.sh again.

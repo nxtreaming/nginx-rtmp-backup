@@ -15,13 +15,13 @@ You have to have [gstreamer](https://gstreamer.freedesktop.org) ( or [avconv](ht
 It is necessary to set a few parameters for the scripts to work properly:
 * `MAIN_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application accepting the main stream.
-Default is `main`.
+Default is `smain`.
 * `BACKUP_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application accepting the backup stream.
-Default is `backup`.
+Default is `sback`.
 * `OUT_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application where the stream should finaly appear.
-Default is `out`.
+Default is `sout`.
 * `MAIN_STREAM_PRIORITY`
 `true` or `false`. If set to `true`, the main stream will be pushed to out stream each time it recovers. If set to `false`, once the out stream switches to backup, it will stay there.
 Default is `true`.
@@ -30,10 +30,10 @@ Default is `true`.
 Default is `gst`.
 * `NGINX_USER`
 A username nginx workers runs under. Required for setting right permissions for logs and pids folders.
-Default is `nobody`.
+Default is `www`.
 * `NGINX_GROUP`
 A group `NGINX_USER` belongs to.
-Default is `nogroup`.
+Default is `www`.
 
 ### Configure nginx-rtmp
 An example configuration matching the default config is presented in `nginx_example.conf`.
@@ -45,14 +45,14 @@ Basically, you need to create three applications, one accepting the main stream,
 
         # An application where the final stream will appear.
         # Its name should match $OUT_STREAM_APPNAME in config.sh.
-        application out {
+        application sout {
             # Enable live streaming.
             live on;
         }
 
         # An application for main incoming streams.
         # Its name should match $MAIN_STREAM_APPNAME in config.sh.
-        application main {
+        application smain {
             # Enable live streaming.
             live on;
 
@@ -60,7 +60,7 @@ Basically, you need to create three applications, one accepting the main stream,
             # We will kill it from scripts anyway, but just in case.
             play_restart on;
 
-            # We need `out` app to have access from localhost.
+            # We need `sout` app to have access from localhost.
             allow play 127.0.0.1;
             # You may want this in case not to allow anyone to watch streams from this point.
             deny play all;
@@ -79,8 +79,8 @@ Basically, you need to create three applications, one accepting the main stream,
 
         # An application for backup incoming streams.
         # Its name should match $BACKUP_STREAM_APPNAME in config.sh.
-        # Everything is the same as for `main` app.
-        application backup {
+        # Everything is the same as for `smain` app.
+        application sback {
             live on;
             play_restart on;
             allow play 127.0.0.1;
@@ -98,10 +98,10 @@ Basically, you need to create three applications, one accepting the main stream,
 ## Usage
 After you have installed and configured scripts, simply send two streams to the apps (`$MAIN_STREAM_APPNAME` and `$BACKUP_STREAM_APPNAME`) with identical streamnames (keys) and watch them in final app (`$OUT_STREAM_APPNAME`).
 For example, if you have specified the following names for nginx-rtmp apps:
-`MAIN_STREAM_APPNAME="main"`
-`BACKUP_STREAM_APPNAME="backup"`
-`OUT_STREAM_APPNAME="out"`,
-and then sent your streams to `rtmp://your.domain/main/test` and `rtmp://your.domain/backup/test`, you can watch the output stream at `rtmp://your.domain/out/test`.
+`MAIN_STREAM_APPNAME="smain"`
+`BACKUP_STREAM_APPNAME="sback"`
+`OUT_STREAM_APPNAME="sout",
+and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
 When switching between streams, you may see a slight delay, as gst/avconv/ffmpeg needs time to run.
 ### Logs
 All logs are stored at `/var/log/nginx-rtmp/backup`.
