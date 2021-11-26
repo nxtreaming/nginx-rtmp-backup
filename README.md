@@ -99,10 +99,10 @@ Basically, you need to create three applications, one accepting the main stream,
 After you have installed and configured scripts, simply send two streams to the apps (`$MAIN_STREAM_APPNAME` and `$BACKUP_STREAM_APPNAME`) with identical streamnames (keys) and watch them in final app (`$OUT_STREAM_APPNAME`).
 For example, if you have specified the following names for nginx-rtmp apps:
 
-```config{
-`MAIN_STREAM_APPNAME="smain"`
-`BACKUP_STREAM_APPNAME="sback"`
-`OUT_STREAM_APPNAME="sout",
+```config {
+MAIN_STREAM_APPNAME="smain"
+BACKUP_STREAM_APPNAME="sback"
+OUT_STREAM_APPNAME="sout",
 }
 ```
 
