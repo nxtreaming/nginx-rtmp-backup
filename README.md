@@ -103,7 +103,7 @@ For example, if you have specified the following names for nginx-rtmp apps:
 MAIN_STREAM_APPNAME="smain"
 BACKUP_STREAM_APPNAME="sback"
 OUT_STREAM_APPNAME="sout",
-}
+
 ```
 
 and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
