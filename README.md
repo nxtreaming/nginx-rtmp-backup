@@ -11,7 +11,7 @@ You have to have [ffmpeg](https://www.ffmpeg.org) ( or [gstreamer](https://gstre
 5. Run `init.sh` (`./init.sh`);
 6. Configure your nginx-rtmp-module (see [below](#configure-nginx-rtmp)).
 
-### Configure scripts
+## Configure scripts
 It is necessary to set a few parameters for the scripts to work properly:
 * `MAIN_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application accepting the main stream.
@@ -35,7 +35,7 @@ Default is `www`.
 A group `NGINX_USER` belongs to.
 Default is `www`.
 
-### Configure nginx-rtmp
+## Configure nginx-rtmp
 An example configuration matching the default config is presented in `nginx_example.conf`.
 Basically, you need to create three applications, one accepting the main stream, another accepting the backup stream, and the third, where your final stream will appear.
 
@@ -105,7 +105,7 @@ OUT_STREAM_APPNAME="sout",
 ```
 and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
 When switching between streams, you may see a slight delay, as ffmpeg/gst needs time to run.
-### Logs
+## Logs
 All logs are stored at `/var/log/nginx-rtmp-switch`.
 Logs for ffmpeg/gst are stored under the names `main_$streamname.log` and `backup_$streamname.log`, where `$streamname` is the RTMP key you send your stream to.
 Logs for scripts are stored in the subdirectory `scripts` named after the scripts themselves.
