@@ -1,4 +1,4 @@
-# This file contains functions required by other nginx-rtmp-backup scripts
+# This file contains functions required by other nginx-rtmp-switch scripts
 
 die() { # Exit with the proper stderr output
 	echo "$CURRENT_APPLICATION_NAME: $*" >&2

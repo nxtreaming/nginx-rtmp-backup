@@ -5,7 +5,7 @@ You have to have [gstreamer](https://gstreamer.freedesktop.org) ( or [avconv](ht
 
 ## Installation
 1. Download files from this repo (or clone it locally);
-2. Place them into a directory readable by nginx (e.g. `/usr/local/share/nginx-rtmp-backup/`);
+2. Place them into a directory readable by nginx (e.g. `/usr/local/share/nginx-rtmp-switch/`);
 3. Make necessary modifications to `config.sh` (see [below](#configure-scripts));
 4. Set execution permissions for `init.sh` (`chmod a+x init.sh`);
 5. Run `init.sh` (`./init.sh`);
@@ -71,10 +71,10 @@ Basically, you need to create three applications, one accepting the main stream,
 
             # When any stream starts publishing to this app,
             # we call main_publish.sh and provide a streamname as a parameter.
-            exec_publish /usr/local/share/nginx-rtmp-backup/main_publish.sh $name;
+            exec_publish /usr/local/share/nginx-rtmp-switch/main_publish.sh $name;
             # When stream stops publishing,
             # call main_publish_done.sh and pass a streamname to it.
-            exec_publish_done /usr/local/share/nginx-rtmp-backup/main_publish_done.sh $name;
+            exec_publish_done /usr/local/share/nginx-rtmp-switch/main_publish_done.sh $name;
         }
 
         # An application for backup incoming streams.
@@ -88,7 +88,7 @@ Basically, you need to create three applications, one accepting the main stream,
 
             # When stream stops publishing,
             # call backup_publish_done.sh and pass a streamname to it.
-            exec_publish_done /usr/local/share/nginx-rtmp-backup/backup_publish_done.sh $name;
+            exec_publish_done /usr/local/share/nginx-rtmp-switch/backup_publish_done.sh $name;
         }
     }
 }

@@ -1,4 +1,4 @@
-# configuration file for nginx-rtmp-backup
+# configuration file for nginx-rtmp-switch
 
 # [true|false] defines whether or not stream changes back to main if it recovers
 # with true it will change back, with false -- stay on backup stream
@@ -26,7 +26,7 @@ NGINX_GROUP="www"
 # If changed anyway, run init.sh again.
 
 # app name
-CURRENT_APPLICATION_NAME="nginx-rtmp-backup"
+CURRENT_APPLICATION_NAME="nginx-rtmp-switch"
 
 # folder where pidfiles are stored
 PIDS_FOLDER="/run/$CURRENT_APPLICATION_NAME"
