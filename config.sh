@@ -4,7 +4,7 @@
 # with true it will change back, with false -- stay on backup stream
 MAIN_STREAM_PRIORITY="true"
 
-# [gst|avconv|ffmpeg] defines which program will push your stream
+# [ffmpeg|gst] defines which program will push your stream
 # use ffmpeg if not sure
 RUNNER="ffmpeg"
 

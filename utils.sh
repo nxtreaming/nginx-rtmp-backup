@@ -57,7 +57,7 @@ push_stream() { # Starts pushing stream
 
 	LOGFILE="$LOGS_FOLDER/${appname}_${STREAMNAME}.log"
 
-	assert_one_of RUNNER gst avconv ffmpeg
+	assert_one_of RUNNER gst ffmpeg
 
 	if [ "$RUNNER" = "gst" ]; then
 		nohup gst-launch-1.0 \
