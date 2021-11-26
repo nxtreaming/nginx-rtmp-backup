@@ -36,7 +36,7 @@ kill() {	# Kills a process pushing stream of provided kind (main/backup)
 	fi
 }
 
-assert_one_of() { # Checks that the value for a variable provided in config is rigth
+assert_one_of() { # Checks that the value for a variable provided in config is right
 	varname="$1"; shift # Get variable name and remove it from arguments list
 	value="$(get_var $varname)"
 	expected="$*" # Values left in arguments list are expected values
@@ -57,7 +57,7 @@ push_stream() { # Starts pushing stream
 
 	LOGFILE="$LOGS_FOLDER/${appname}_${STREAMNAME}.log"
 
-	assert_one_of RUNNER gst ffmpeg
+	assert_one_of RUNNER ffmpeg gst
 
 	if [ "$RUNNER" = "gst" ]; then
 		nohup gst-launch-1.0 \
