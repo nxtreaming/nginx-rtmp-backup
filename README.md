@@ -27,7 +27,7 @@ Default is `sout`.
 Default is `true`.
 * `RUNNER`
 `ffmpeg` or `gst`. Defines which program will push streams.
-Default is `gst`.
+Default is `ffmpeg`.
 * `NGINX_USER`
 A username nginx workers runs under. Required for setting right permissions for logs and pids folders.
 Default is `www`.
@@ -104,7 +104,7 @@ For example, if you have specified the following names for nginx-rtmp apps:
 and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
 When switching between streams, you may see a slight delay, as ffmpeg/gst needs time to run.
 ### Logs
-All logs are stored at `/var/log/nginx-rtmp/backup`.
+All logs are stored at `/var/log/nginx-rtmp-switch`.
 Logs for ffmpeg/gst are stored under the names `main_$streamname.log` and `backup_$streamname.log`, where `$streamname` is the RTMP key you send your stream to.
 Logs for scripts are stored in the subdirectory `scripts` named after the scripts themselves.
 
