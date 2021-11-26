@@ -98,9 +98,9 @@ Basically, you need to create three applications, one accepting the main stream,
 ## Usage
 After you have installed and configured scripts, simply send two streams to the apps (`$MAIN_STREAM_APPNAME` and `$BACKUP_STREAM_APPNAME`) with identical streamnames (keys) and watch them in final app (`$OUT_STREAM_APPNAME`).
 For example, if you have specified the following names for nginx-rtmp apps:
-`MAIN_STREAM_APPNAME="smain"`
-`BACKUP_STREAM_APPNAME="sback"`
-`OUT_STREAM_APPNAME="sout",
+```MAIN_STREAM_APPNAME="smain"```
+```BACKUP_STREAM_APPNAME="sback"```
+```OUT_STREAM_APPNAME="sout"```,
 and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
 When switching between streams, you may see a slight delay, as ffmpeg/gst needs time to run.
 ### Logs
