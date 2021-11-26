@@ -1,5 +1,6 @@
 # NGINX-RTMP-BACKUP
 This is a set of shell scripts that allows you to implement elementary backups for your RTMP streams.
+
 ## Prerequisites
 You have to have [ffmpeg](https://www.ffmpeg.org) ( or [gstreamer](https://gstreamer.freedesktop.org/)) and [nginx](https://nginx.ru/en/) with [nginx-rtmp-module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) installed on your machine.
 
@@ -94,7 +95,6 @@ Basically, you need to create three applications, one accepting the main stream,
 }
 ```
 
-
 ## Usage
 After you have installed and configured scripts, simply send two streams to the apps (`$MAIN_STREAM_APPNAME` and `$BACKUP_STREAM_APPNAME`) with identical streamnames (keys) and watch them in final app (`$OUT_STREAM_APPNAME`).
 For example, if you have specified the following names for nginx-rtmp apps:
@@ -105,6 +105,7 @@ OUT_STREAM_APPNAME="sout",
 ```
 and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
 When switching between streams, you may see a slight delay, as ffmpeg/gst needs time to run.
+
 ## Logs
 All logs are stored at `/var/log/nginx-rtmp-switch`.
 Logs for ffmpeg/gst are stored under the names `main_$streamname.log` and `backup_$streamname.log`, where `$streamname` is the RTMP key you send your stream to.
