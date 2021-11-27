@@ -1,4 +1,4 @@
-# NGINX-RTMP-BACKUP
+# NGINX-RTMP-SWITCH
 This is a set of shell scripts that allows you to implement elementary backups for your RTMP streams.
 
 ## Prerequisites
