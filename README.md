@@ -16,13 +16,13 @@ You have to have [ffmpeg](https://www.ffmpeg.org) ( or [gstreamer](https://gstre
 It is necessary to set a few parameters for the scripts to work properly:
 * `MAIN_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application accepting the main stream.
-Default is `smain`.
+Default is `mcast`.
 * `BACKUP_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application accepting the backup stream.
-Default is `sback`.
+Default is `bcast`.
 * `OUT_STREAM_APPNAME`
 Should match the name of a nginx-rtmp application where the stream should finaly appear.
-Default is `sout`.
+Default is `cout`.
 * `MAIN_STREAM_PRIORITY`
 `true` or `false`. If set to `true`, the main stream will be pushed to out stream each time it recovers. If set to `false`, once the out stream switches to backup, it will stay there.
 Default is `true`.
@@ -46,14 +46,14 @@ Basically, you need to create three applications, one accepting the main stream,
 
         # An application where the final stream will appear.
         # Its name should match $OUT_STREAM_APPNAME in config.sh.
-        application sout {
+        application cout {
             # Enable live streaming.
             live on;
         }
 
         # An application for main incoming streams.
         # Its name should match $MAIN_STREAM_APPNAME in config.sh.
-        application smain {
+        application mcast {
             # Enable live streaming.
             live on;
 
@@ -61,7 +61,7 @@ Basically, you need to create three applications, one accepting the main stream,
             # We will kill it from scripts anyway, but just in case.
             play_restart on;
 
-            # We need `sout` app to have access from localhost.
+            # We need `cout` app to have access from localhost.
             allow play 127.0.0.1;
             # You may want this in case not to allow anyone to watch streams from this point.
             deny play all;
@@ -80,8 +80,8 @@ Basically, you need to create three applications, one accepting the main stream,
 
         # An application for backup incoming streams.
         # Its name should match $BACKUP_STREAM_APPNAME in config.sh.
-        # Everything is the same as for `smain` app.
-        application sback {
+        # Everything is the same as for `mcast` app.
+        application bcast {
             live on;
             play_restart on;
             allow play 127.0.0.1;
@@ -99,11 +99,11 @@ Basically, you need to create three applications, one accepting the main stream,
 After you have installed and configured scripts, simply send two streams to the apps (`$MAIN_STREAM_APPNAME` and `$BACKUP_STREAM_APPNAME`) with identical streamnames (keys) and watch them in final app (`$OUT_STREAM_APPNAME`).
 For example, if you have specified the following names for nginx-rtmp apps:
 ```config
-MAIN_STREAM_APPNAME="smain",
-BACKUP_STREAM_APPNAME="sback",
-OUT_STREAM_APPNAME="sout",
+MAIN_STREAM_APPNAME="mcast",
+BACKUP_STREAM_APPNAME="bcast",
+OUT_STREAM_APPNAME="cout",
 ```
-and then sent your streams to `rtmp://your.domain/smain/test` and `rtmp://your.domain/sback/test`, you can watch the output stream at `rtmp://your.domain/sout/test`.
+and then sent your streams to `rtmp://your.domain/mcast/test` and `rtmp://your.domain/bcast/test`, you can watch the output stream at `rtmp://your.domain/cout/test`.
 When switching between streams, you may see a slight delay, as ffmpeg/gst needs time to run.
 
 ## Logs

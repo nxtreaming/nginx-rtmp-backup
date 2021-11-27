@@ -9,13 +9,13 @@ MAIN_STREAM_PRIORITY="true"
 RUNNER="ffmpeg"
 
 # nginx rtmp application name for main stream
-MAIN_STREAM_APPNAME="smain"
+MAIN_STREAM_APPNAME="mcast"
 
 # nginx rtmp application name for backup stream
-BACKUP_STREAM_APPNAME="sback"
+BACKUP_STREAM_APPNAME="bcast"
 
 # nginx rtmp application name for final stream
-OUT_STREAM_APPNAME="sout"
+OUT_STREAM_APPNAME="cout"
 
 # username for nginx worker processes
 NGINX_USER="www"
