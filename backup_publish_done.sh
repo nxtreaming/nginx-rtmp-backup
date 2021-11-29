@@ -14,4 +14,12 @@ parse_argv "$@"
 
 kill backup
 
+# switch to main stream when priority is not main stream
+if is_running main;
+then
+	true
+else
+	push_stream main
+fi
+
 exit 0
