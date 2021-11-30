@@ -2,7 +2,7 @@
 
 # [true|false] defines whether or not stream changes back to main if it recovers
 # with true it will change back, with false -- stay on backup stream
-MAIN_STREAM_PRIORITY="true"
+MAIN_STREAM_PRIORITY="false"
 
 # [ffmpeg|gst] defines which program will push your stream
 # use ffmpeg if not sure
